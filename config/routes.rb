@@ -1,6 +1,12 @@
 Todo::Application.routes.draw do
   root :to => 'tasks#index'
-  post '/tasks' => 'tasks#create'
+
+  get "/tasks/:id/edit" => 'tasks#edit'
+  post 'tasks' => 'tasks#create'
+  delete 'tasks/:id' => 'tasks#destroy'
+  put 'tasks/:id' => 'tasks#update', :as => 'task'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

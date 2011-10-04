@@ -1,12 +1,17 @@
 <h1>Listing all tasks</h1>
 
-<ul>
-  <%@tasks.each do |task|%>
-    <li><%= task.title %></li>
-  <%end%>
-</ul>
-
-<%=form_for Task.new do |f|%>
+<%=form_for @task do |f|%>
   <%=f.text_field :title, :placeholder => 'Title' %>
   <%=f.submit%>
 <%end%>
+
+<ul>
+  <%@tasks.each do |task|%>
+    <li>
+      <%= task.title %> -
+      <%=link_to 'edit', "/tasks/#{task.id}/edit" %> |
+      <%=link_to 'delete', "/tasks/#{task.id}", :method => :delete %>
+    </li>
+  <%end%>
+</ul>
+
