@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.to_a.sort_by{|x| -x.priority.to_i}
     @task = Task.new
   end
 
@@ -24,5 +24,12 @@ class TasksController < ApplicationController
     task = Task.find(params[:id])
     task.destroy
     redirect_to root_path
+  end
+
+  def test
+  end
+
+  def currentdate
+    render :text => Time.now.to_s
   end
 end

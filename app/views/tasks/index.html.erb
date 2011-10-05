@@ -1,14 +1,16 @@
-<h1>Listing all tasks</h1>
-
 <%=form_for @task do |f|%>
   <%=f.text_field :title, :placeholder => 'Title' %>
-  <%=f.submit%>
 <%end%>
 
 <ul>
   <%@tasks.each do |task|%>
     <li>
-      <%= task.title %> -
+      <%if task.is_complete %>
+        <s><%= task.title %>(<%=task.priority.to_i%>)</s>
+      <%else%>
+        <%= task.title %> (<%=task.priority.to_i%>)
+      <%end%>
+      -
       <%=link_to 'edit', "/tasks/#{task.id}/edit" %> |
       <%=link_to 'delete', "/tasks/#{task.id}", :method => :delete %>
     </li>

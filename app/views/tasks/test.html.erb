@@ -1,0 +1,20 @@
+<h1>Test stuff</h1>
+
+Reference:<%= Time.now %>
+
+
+<br />
+<input type='button' value='Update time using AJAX' id='update-time' />
+<div id='output'>
+</div>
+
+
+<script type="text/javascript">
+  $("#update-time").click(function() {
+      $.get('/tasks/currentdate', null, function(data) {
+        $("#output").html(data);
+        },
+        'text');
+      console.log('wiredup all the methods');
+      });
+    </script>

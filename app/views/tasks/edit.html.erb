@@ -1,4 +1,6 @@
 <%=form_for @task do |f|%>
+  <%=f.check_box :is_complete %>
+  <%=f.text_field :priority, :placeholder => 'Priority', :size => 5 %>
   <%=f.text_field :title, :placeholder => 'Title' %>
   <%=f.submit%>
 <%end%>

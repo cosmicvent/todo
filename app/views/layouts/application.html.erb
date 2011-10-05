@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Todo</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Todo</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <style type="text/css">
+      body{margin:0;padding:0;border:0;background-color:#999}
+      #wrapper{width:500px; margin:0 auto;}
+      #content,#header{background-color:#fff;padding:10px;}
+      #header h1{text-align:center;}
+      #footer{text-align:center;margin-top:5px;color:#555;}
+      #content input{font-size:2em;width:400px;margin:0 45px;}
+      h1{color:#333;}
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <h1>Todos</h1>
+      </div>
+      <div id="content">
+        <%= yield %>
+      </div>
+      <div id="footer">
+        Awesome todo app
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,6 +1,8 @@
 Todo::Application.routes.draw do
   root :to => 'tasks#index'
 
+  get 'tasks/currentdate'
+  get 'tasks/test'
   get "/tasks/:id/edit" => 'tasks#edit'
   post 'tasks' => 'tasks#create'
   delete 'tasks/:id' => 'tasks#destroy'
