@@ -7,7 +7,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create(params[:task])
-    redirect_to root_path
+    render :json => @task
   end
 
   def update

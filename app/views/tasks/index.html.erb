@@ -2,18 +2,50 @@
   <%=f.text_field :title, :placeholder => 'Title' %>
 <%end%>
 
-<ul>
+<ul id='task-list'>
   <%@tasks.each do |task|%>
     <li>
       <%if task.is_complete %>
-        <s><%= task.title %>(<%=task.priority.to_i%>)</s>
+        <s><%= task.title %></s>
       <%else%>
-        <%= task.title %> (<%=task.priority.to_i%>)
+        <%= task.title %>
       <%end%>
       -
       <%=link_to 'edit', "/tasks/#{task.id}/edit" %> |
-      <%=link_to 'delete', "/tasks/#{task.id}", :method => :delete %>
+      <%=link_to 'delete', "/tasks/#{task.id}", :method => :delete, :class => 'delete-task'%>
     </li>
   <%end%>
 </ul>
 
+
+<script type="text/javascript">
+  $(".delete-task").click(function(){
+
+      var url = $(this).attr('href');
+      var deleteLink = $(this);
+
+      $.post(url, { "_method": 'delete' },
+          function() {
+          var li = deleteLink.parent();
+          li.hide('slow', function(){
+            $(this).remove();
+          });
+          },
+      'html');
+
+      return false;
+  });
+
+  $("#new_task").submit(function(){
+      var title = $("#task_title").val();
+      $.post('/tasks',{"task[title]": title}, function(response){
+        var html = "<li>" + response.title +
+        " - <a href='/tasks/"+ response.id + "/edit'>edit</a> | <a href='/tasks/" +
+        response.id + "' class='delete-task' data-method='delete' rel='nofollow'>delete</a></li>";
+
+        $("#task-list").append(html);
+        $("#task_title").val('');
+      },'json')
+      return false;
+  });
+</script>

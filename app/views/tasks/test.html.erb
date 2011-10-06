@@ -12,9 +12,8 @@ Reference:<%= Time.now %>
 <script type="text/javascript">
   $("#update-time").click(function() {
       $.get('/tasks/currentdate', null, function(data) {
-        $("#output").html(data);
+          $("#output").html(data);
         },
         'text');
-      console.log('wiredup all the methods');
       });
-    </script>
+</script>
