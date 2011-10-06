@@ -4,12 +4,15 @@
 
 <ul id='task-list'>
   <%@tasks.each do |task|%>
-    <li>
+    <li data-taskid=<%=task.id%>>
+    <input type='checkbox' class='task-iscomplete' <%="checked='checked'" if task.is_complete%> >
+    <span>
       <%if task.is_complete %>
         <s><%= task.title %></s>
       <%else%>
         <%= task.title %>
       <%end%>
+    </span>
       -
       <%=link_to 'edit', "/tasks/#{task.id}/edit" %> |
       <%=link_to 'delete', "/tasks/#{task.id}", :method => :delete, :class => 'delete-task'%>
@@ -48,4 +51,18 @@
       },'json')
       return false;
   });
+
+    $(".task-iscomplete").click(function(){
+        var taskid = $(this).parent().attr('data-taskid');
+        var isChecked = !!$(this).attr('checked');
+        var li = $(this).parent();
+        $.post("/tasks/"+taskid, {'_method':'put', "task[is_complete]":isChecked},function(response){
+          var title = li.find("span").text();
+          if(isChecked){
+            li.find("span").html("<s>" + title + "</s>");
+          }else{
+            li.find("span").html(title);
+          }
+        },'html');
+    });
 </script>
