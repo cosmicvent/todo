@@ -5,22 +5,24 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <link href = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/jquery-ui.min.js"></script>
     <style type="text/css">
       body{margin:0;padding:0;border:0;background-color:#999}
       #wrapper{width:500px; margin:0 auto;}
       #content,#header{background-color:#fff;padding:10px;}
       #header h1{text-align:center;}
       #footer{text-align:center;margin-top:5px;color:#555;}
-      #content input{font-size:2em;width:400px;margin:0 45px;}
+      #content input{font-size:1.5em;width:400px;margin:0 45px;}
       h1{color:#333;}
       #content ul {list-style:none;}
       #content ul li {border-bottom: 1px solid #999;padding-bottom:3px;}
       #content input.task-iscomplete{width:10px;margin:0;}
+      #content input.title {margin:0px;}
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <div style='text-align:center;'><%=Time.now%></div>
       <div id="header">
         <h1>Todos</h1>
       </div>

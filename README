@@ -3,4 +3,5 @@ Todo
  + should be able to add tasks
  + should be able to edit/delete tasks
  + should be able to mark tasks as complete
- - should be able to prioritize tasks
+ + should be able to prioritize tasks
+ - should make the app dynamic i.e. without full page refresh

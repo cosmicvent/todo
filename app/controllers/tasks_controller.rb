@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all.to_a.sort_by{|x| -x.priority.to_i}
+    @tasks = Task.all.to_a.sort_by{|x| x.priority.to_i}
     @task = Task.new
   end
 
@@ -13,11 +13,23 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update_attributes(params[:task])
-    redirect_to root_path
+    render :json => @task
   end
 
   def edit
     @task = Task.find(params[:id])
+  end
+
+  def update_sort_order
+    new_sort_order = JSON.parse(params[:sort])
+    i = 0
+    new_sort_order.each do|id|
+      task = Task.find(id)
+      task.priority = i
+      task.save
+      i += 1
+    end
+    render :json => {:success => true}
   end
 
   def destroy

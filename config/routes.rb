@@ -1,12 +1,30 @@
 Todo::Application.routes.draw do
+
   root :to => 'tasks#index'
 
-  get 'tasks/currentdate'
-  get 'tasks/test'
-  get "/tasks/:id/edit" => 'tasks#edit'
-  post 'tasks' => 'tasks#create'
-  delete 'tasks/:id' => 'tasks#destroy'
-  put 'tasks/:id' => 'tasks#update', :as => 'task'
+  #root_path
+
+  #get '/' => 'tasks#index'
+
+  post 'tasks/update_sort_order'
+  #get 'tasks/currentdate'
+  #get 'tasks/test'
+  #get "/tasks/:id/edit" => 'tasks#edit'
+  #post 'tasks' => 'tasks#create'
+  #delete 'tasks/:id' => 'tasks#destroy'
+  #put 'tasks/:id' => 'tasks#update', :as => 'task'
+
+  resources :tasks
+
+  #get "tasks" => "tasks#index"
+  #get "tasks/:id" => "tasks#show"
+  #get "tasks/new" => "tasks#new"
+  #post "tasks" => "tasks#create"
+  #get "tasks/:id/edit" => "tasks#edit"
+  #put "tasks/:id" => "tasks#update"
+  #delete "tasks/:id" => "tasks#destroy"
+
+  #RESTful principles
 
 
   # The priority is based upon order of creation:
